@@ -1,0 +1,15 @@
+1. Tenemos que instalar Docker en nuestro entorno
+2. Una vez que lo tenemos ya estamos listos para ejecutar la imagen 
+
+y ahora vienen estos pasos...
+
+# Construir la imagen en mi crepositorio de Docker
+
+docker build -t chatbot .
+
+# Ejecutar la imagen desde el repositorio de Docker
+
+docker run -it --publish 7000:4000 chatbot
+
+- Despues de este paso ponemos en el buscado 'localhost:7000' y nos funciona ya que estamos en el puerto 4000 en nuestro contenedor pero 
+estaremos en el puerto 7000 en nuestro ordenador.
