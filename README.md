@@ -5,11 +5,15 @@
 
 1. DockerFile( imagen )
     
+    * Abrir el DockerDesktop para ejecutar cualquier comando en nuestro terminal (ya que si no lo abres, no funcionan los comandos), y una vez asi, ejecutar estos comandos.
+    
     - Creamos imagen:
 
         * Tenemos que instalar Docker en nuestro entorno
 
         * Una vez que lo tenemos ya estamos listos para ejecutar la imagen
+
+        * Dirigirnos al Path donde esta el Dockerfile
 
         * Construir la imagen en mi crepositorio de Docker
 
@@ -25,7 +29,7 @@
 
         * Abrimos la terminal tanto VSC o Local
 
-        * Escribimos esto y directamente descargamos la imagen del contenedor 
+        * Escribimos esto y directamente descargamos la imagen del contenedor DockerHub
         
         ``` docker run -p 7000:4000 -t migueldfr/chatbot ```
  
