@@ -3,11 +3,11 @@ import os
 from flask import Flask, render_template, request
 import sqlite3
 from datetime import datetime
+import pymysql
 
 # Creamos la ruta de nuestros archivos externos 
 api_key_path = os.path.join(os.path.dirname(__file__), "api_key.txt")
-bbdd_path = os.path.join(os.path.dirname(__file__), "data/questions.db")
-print(api_key_path)
+# bbdd_path = os.path.join(os.path.dirname(__file__), "data/questions.db")
 
 # Llamamos a la web server para desplegarla
 app = Flask(__name__)
@@ -29,23 +29,39 @@ def my_form_post():
     
     # Cambiamos los valores sin codificar por sus correciones
     text_output = response.choices[0].text
+    text_output = text_output.replace('\n', ' ')
+    text_output = text_output.replace('\t', '    ')
     text_output = text_output.replace('\u00e1', 'á')
     text_output = text_output.replace('\u00e9', 'é')
     text_output = text_output.replace('\u00ed', 'í')
     text_output = text_output.replace('\u00f3', 'ó')
     text_output = text_output.replace('\u00fa', 'ú')
-
+    
     # Añadimos a la base de datos en formato fecha y hora
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     pregunta_respuesta = (now, variable, text_output)
-
+    print('Pregunta respuesta:', pregunta_respuesta)
     # Conectamos con la BBDD y a su vez lo insetarmos en ella 
-    connection = sqlite3.connect(bbdd_path)
-    crsr = connection.cursor()
-    crsr.execute("INSERT INTO FAQ VALUES (?,?,?)", pregunta_respuesta)
-    connection.commit()
-    connection.close()
-    return text_output + '<p><a href="/">Back</a></p>\n'
+    username = "admin"
+    password = "12345678"
+    host = "database-1.c10by1rrbsdg.us-east-2.rds.amazonaws.com" 
+    port = 3306
+    db = pymysql.connect(host = host,
+                     user = username,
+                     password = password,
+                     cursorclass = pymysql.cursors.DictCursor)
+    
+    crsr = db.cursor()
+    crsr.connection.commit()
+    use_db = '''USE PreguntasGPT'''
+    crsr.execute(use_db)
+
+    insert_data = '''INSERT INTO GPT (FECHA, PREGUNTAS, RESPUESTAS) VALUES ('%s', '%s', '%s')''' % pregunta_respuesta
+    crsr.execute(insert_data)
+    
+    db.commit()
+    db.close()
+    return render_template('index_2.html', text_output=text_output)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=4000, debug=True)
