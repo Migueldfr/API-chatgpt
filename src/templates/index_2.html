@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <title>Answer</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Your AI assistant</h1>
+    <p>¡Aquí tienes la respuesta que andabas buscando!</p>
+    <p>{{ text_output }}</p>
+    <p><a href="/">Back</a></p>
+  </div>
+  <video autoplay loop muted>
+    <source src="static/video.mp4" type="video/mp4">
+  </video>
+</body>
+</html>
