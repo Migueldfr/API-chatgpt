@@ -23,7 +23,11 @@
 
         ``` docker run -it --publish 7000:4000 chatbot ```
 
-        * Ahora escribimos esto en nuestra web 'localhost:7000' y ya nos funciona, ya que estamos en el puerto 4000 en nuestro contenedor pero estaremos en el puerto 7000 en nuestro ordenador.
+        * Ahora escribimos esto en nuestra web 
+        
+        ``` localhost:7000 ``` 
+        
+        Esto quiere decir, que estamos en el puerto 4000 en nuestro contenedor pero estaremos en el puerto 7000 en nuestro ordenador.
     
     - Pull desde la API DockerHub:
 
@@ -32,6 +36,10 @@
         * Escribimos esto y directamente descargamos la imagen del contenedor DockerHub
         
         ``` docker run -p 7000:4000 -t migueldfr/chatbot ```
+
+        * A su vez debemos poner este comando en nuestra web
+
+        ``` localhost:7000 ```
  
 2. Ejecutable de nuestra app donde desarrollamos el codigo para llamar a la API de ChatGPT y a su vez lo llevamos a una BBDD de Amazon Web Services (AWS)
 
