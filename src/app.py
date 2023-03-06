@@ -41,7 +41,7 @@ def my_form_post():
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     pregunta_respuesta = (now, variable, text_output)
     print('Pregunta respuesta:', pregunta_respuesta)
-    # Conectamos con la BBDD y a su vez lo insetarmos en ella 
+    # Conectamos con AWS 
     username = "admin"
     password = "12345678"
     host = "database-1.c10by1rrbsdg.us-east-2.rds.amazonaws.com" 
@@ -51,14 +51,17 @@ def my_form_post():
                      password = password,
                      cursorclass = pymysql.cursors.DictCursor)
     
+    # Accedemos a la base de datos seleccionada
     crsr = db.cursor()
     crsr.connection.commit()
     use_db = '''USE PreguntasGPT'''
     crsr.execute(use_db)
 
+    # Dentro de la base de datos, insertamos en la tabla elegida los datos obtenidos
     insert_data = '''INSERT INTO GPT (FECHA, PREGUNTAS, RESPUESTAS) VALUES ('%s', '%s', '%s')''' % pregunta_respuesta
     crsr.execute(insert_data)
     
+    # Llevamos a cabo los cambios y cerramos la conexión con la base de datos
     db.commit()
     db.close()
     return render_template('index_2.html', text_output=text_output)
