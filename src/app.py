@@ -21,7 +21,9 @@ def hello():
 # Creamos la funcion para la llamada a la API de CHATGPT
 @app.route('/', methods=['POST'])
 def my_form_post():
-    openai.api_key = open(api_key_path, "r").read()
+    api_key = request.form['api_key']
+    openai.api_key = api_key
+    #openai.api_key = open(api_key_path, "r").read()
     variable = request.form['variable']
     response = openai.Completion.create(engine = "text-davinci-003",
                                     prompt = variable + "Respuesta corta, por favor",

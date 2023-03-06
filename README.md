@@ -55,6 +55,20 @@
 
         * Dicha tabla recibirá tres strings para las columnas "FECHA", "PREGUNTA", "RESPUESTA". Si quieres acceder a los datos puedes hacerlo desde el archivo llamado base_de_datos.ipynb
 
-3. Una documentacion de lo mas detallada por si quieres probar tu mismo los entresijos de la misma aplicacion, que sin duda te dejara sin habla.
+3. A continuación una breve descripción del proceso de desarrollo y despliegue de la aplicación:
+
+    - En primer lugar, lo primero que hicimos fue definir los objetivos del proyecto y los requerimientos técnicos necesarios. Queríamos crear una aplicación web que permitiera a los usuarios interactuar con un chatbot desarrollado con la API de chat GPT. Para ello, necesitábamos diseñar una arquitectura que nos permitiera conectar la API con la interfaz que íbamos a crear. 
+    
+    - Una vez que definimos los objetivos y los requerimientos, procedimos a diseñar la arquitectura del sistema. Para ello, consideramos los componentes que conformarían la aplicación, cómo se relacionarían entre sí y cómo se almacenarían los datos. Diseñamos una arquitectura basada en microservicios, que nos permitiría conectar diferentes componentes de manera independiente y escalable.
+
+    - Cuando tuvimos la API de chat GPT funcionando, procedimos a diseñar y desarrollar la interfaz construida con HTML que permitiría a los usuarios interactuar con el chatbot. Nos enfocamos en crear una interfaz de usuario intuitiva y fácil de usar, que permitiera a los usuarios ingresar su API key y comenzar a interactuar con el chatbot. 
+
+    - Luego, decidimos integrar Docker en nuestro proyecto. Docker es una herramienta de virtualización que permite empaquetar una aplicación y sus dependencias en un contenedor. De esta manera, pudimos asegurarnos de que la aplicación funcionara de manera idéntica en cualquier entorno, lo que facilitó el proceso de despliegue.
+
+    - Finalmente, integramos Amazon Web Services (AWS) en nuestro proyecto para alojar la aplicación en la nube. Tuvimos que crear una base de datos donde se guardasen las consultas realizadas con la respuesta y la hora a la que se realizó la interacción con la API.
+
+    - En resumen, nuestro proyecto consistió en diseñar y desarrollar una aplicación web que permitiera a los usuarios interactuar con un chatbot desarrollado con la API de chat GPT. Para ello, definimos la arquitectura del sistema, desarrollamos la API de chat GPT, diseñamos y desarrollamos la interfaz, integramos Docker y Amazon Web Services para alojar la aplicación en la nube.
+
+    - Como añadido, una vez que tuvimos la interfaz desarrollada en html, decidímos sumar un punto más usando CSS para hacer más agradable a la vista la propia app. Pensamos que sería buena idea añadir un campo donde el usuario pueda ingresar su propia API key para hacer las consultas. Para la mejor accesibilidad hemos decidido subir la imagen a Docker Hub y ahorrarnos hacer pasos extra.
 
 
