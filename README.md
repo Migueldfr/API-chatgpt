@@ -1,82 +1,76 @@
-¡Nuestro equipo de desarrollo esta compuesto por 3 miembros!
-- [Ramón Fernández](https://github.com/RamonFCerezo)
-- [Bogdan Radacina](https://github.com/BogdanBoyan92)
-- [Miguel de Frutos](https://github.com/Migueldfr)
-
-1. DockerFile( imagen )
+1. DockerFile
     
-    * Abrir el DockerDesktop para ejecutar cualquier comando en nuestro terminal (ya que si no lo abres, no funcionan los comandos), y una vez asi, ejecutar estos comandos.
+    * Open Docker Desktop to run any command in your terminal, and once you've done that, execute these commands
     
-    - Creamos imagen:
+    - Create image:
 
-        * Tenemos que instalar Docker en nuestro entorno
+        * Docker must be installed in our environment
 
-        * Una vez que lo tenemos ya estamos listos para ejecutar la imagen
+        * Navigate to the path where the Dockerfile is located
 
-        * Dirigirnos al Path donde esta el Dockerfile
-
-        * Construir la imagen en mi crepositorio de Docker
+        * Build the image in our docker repository with this code
 
         ``` docker build -t chatbot . ```
 
-        * Ejecutar la imagen desde el repositorio de Docker
+        * Execute the image from the Docker repository
 
         ``` docker run -it --publish 7000:4000 chatbot ```
 
-        * Ahora escribimos esto en nuestra web 
+        * Now we write this location in our browser
         
         ``` localhost:7000 ``` 
-        
-        Esto quiere decir, que estamos en el puerto 4000 en nuestro contenedor pero estaremos en el puerto 7000 en nuestro ordenador.
-    
-    - Pull desde la API DockerHub:
+       
+    - Pull from DockerHub API:
 
-        * Abrimos la terminal tanto VSC o Local
+        * Open terminal (VSC or local)
 
-        * Escribimos esto y directamente descargamos la imagen del contenedor DockerHub
+        * Write this code and download the image
         
         ``` docker run -p 7000:4000 -t migueldfr/chatbot ```
 
-        * A su vez debemos poner este comando en nuestra web
+        * We write this location in our browser
 
         ``` localhost:7000 ```
  
-2. Ejecutable de nuestra app donde desarrollamos el codigo para llamar a la API de ChatGPT y a su vez lo llevamos a una BBDD de Amazon Web Services (AWS)
+2. The executable of our app is where we developed the code to call the ChatGPT API and in turn, we store it in an Amazon Web Services (AWS) database.
 
-    - Funcionalidad de nuestra app: lanza la pregunta del usuario a la API de ChatGPT, y devuelve por pantalla la respuesta de la misma, con un límite de 500 tokens, y el motor de texto inteligente 'davinci'. Después, de forma automática, añade la fecha de la pregunta, la pregunta y la respuesta a una base de datos en AWS previamente creada para ello.
+    - Functionality of our app: It launches the user's question to the ChatGPT API and returns the response to the screen, with a limit of 500 tokens and using the 'davinci' intelligent text engine. Afterwards, automatically adds the date of the question, the question, and the response to a previously created AWS database.
 
-    - Conexión a ChatGPT:
+    - Connection to ChatGPT:
 
-        * Deberás tener un archivo txt de nombre api_key.txt que incluya sólo la clave API-key, para que la aplicación funcione correctamente. (*input en elaboración*)
+        * You must have a txt file named api_key.txt that includes only the API-key, for the application to function properly. (input in progress)
 
-        * En la pantalla inicial o home, podrás introducir como input la pregunta o prompt que quieras, a la que se le añadirá el string "Respuesta corta, por favor", porque tenemos restringida la llamada a 500 tokens y no queremos que la respuesta quede a la mitad.
+        * On the home screen, you can enter the question or prompt you want as input, to which the string "Short answer, please" will be added, because we have restricted the call to 500 tokens and we do not want the answer to be cut off.
 
-        * Cambiamos los caracteres no reconocidos correctamente (vocales acentuadas, tabulaciones y saltos de línea), por los correctos.
+        * We change the incorrectly recognized characters (accented vowels, tabs, and line breaks) to the correct ones.
 
-        * Pasamos la fecha introducida, la del momento en que se lleva a cabo la pregunta, a formato string.
+        * We convert the entered date, which is the moment the question is asked, to a string format.
 
-    - Conexión a la BBDD en AWS
+    - Connection to AWS Database
 
-        * La base de datos en la que se van a incluir todas las preguntas y respuestas se encuentra en la carpeta notebooks, en un archivo llamado base_de_datos.ipynb.
+        * The database where all questions and answers will be included is located in the notebooks folder, in a file called base_de_datos.ipynb.
 
-        * En ella, se encuentra la base de datos llamada "PreguntasGPT", y dentro de la misma, la tabla en la que se van a insertar los datos nuevos: "GPT".
+        * It contains the database named "PreguntasGPT" and within it, the table where new data will be inserted: "GPT".
 
-        * Dicha tabla recibirá tres strings para las columnas "FECHA", "PREGUNTA", "RESPUESTA". Si quieres acceder a los datos puedes hacerlo desde el archivo llamado base_de_datos.ipynb
+        * This table will receive three strings for the "DATE", "QUESTION", and "ANSWER" columns. If you want to access the data, you can do it from the file called base_de_datos.ipynb.
 
-3. A continuación una breve descripción del proceso de desarrollo y despliegue de la aplicación:
+3. Here is a brief description of the development and deployment process of the application:
 
-    - En primer lugar, lo primero que hicimos fue definir los objetivos del proyecto y los requerimientos técnicos necesarios. Queríamos crear una aplicación web que permitiera a los usuarios interactuar con un chatbot desarrollado con la API de chat GPT. Para ello, necesitábamos diseñar una arquitectura que nos permitiera conectar la API con la interfaz que íbamos a crear. 
-    
-    - Una vez que definimos los objetivos y los requerimientos, procedimos a diseñar la arquitectura del sistema. Para ello, consideramos los componentes que conformarían la aplicación, cómo se relacionarían entre sí y cómo se almacenarían los datos. Diseñamos una arquitectura basada en microservicios, que nos permitiría conectar diferentes componentes de manera independiente y escalable.
+    - First, we defined the project's objectives and the necessary technical requirements. We wanted to create a web application that would allow users to interact with a chatbot developed with the ChatGPT API. To do this, we needed to design an architecture that would allow us to connect the API with the interface we were going to create.
 
-    - Cuando tuvimos la API de chat GPT funcionando, procedimos a diseñar y desarrollar la interfaz construida con HTML que permitiría a los usuarios interactuar con el chatbot. Nos enfocamos en crear una interfaz de usuario intuitiva y fácil de usar, que permitiera a los usuarios ingresar su API key y comenzar a interactuar con el chatbot. 
+    - Once we defined the objectives and requirements, we proceeded to design the system's architecture. We considered the components that would make up the application, how they would relate to each other, and how the data would be stored. We designed an architecture based on microservices that would allow us to connect different components independently and scalably.
 
-    - Luego, decidimos integrar Docker en nuestro proyecto. Docker es una herramienta de virtualización que permite empaquetar una aplicación y sus dependencias en un contenedor. De esta manera, pudimos asegurarnos de que la aplicación funcionara de manera idéntica en cualquier entorno, lo que facilitó el proceso de despliegue.
+    - When we had the ChatGPT API working, we proceeded to design and develop the interface built with HTML that would allow users to interact with the chatbot. We focused on creating an intuitive and easy-to-use user interface that would allow users to enter their API key and start interacting with the chatbot.
 
-    - Finalmente, integramos Amazon Web Services (AWS) en nuestro proyecto para alojar la aplicación en la nube. Tuvimos que crear una base de datos donde se guardasen las consultas realizadas con la respuesta y la hora a la que se realizó la interacción con la API.
+    - Then, we decided to integrate Docker into our project. Docker is a virtualization tool that allows packaging an application and its dependencies into a container. This way, we could ensure that the application would work identically in any environment, which facilitated the deployment process.
 
-    - En resumen, nuestro proyecto consistió en diseñar y desarrollar una aplicación web que permitiera a los usuarios interactuar con un chatbot desarrollado con la API de chat GPT. Para ello, definimos la arquitectura del sistema, desarrollamos la API de chat GPT, diseñamos y desarrollamos la interfaz, integramos Docker y Amazon Web Services para alojar la aplicación en la nube.
+    - Finally, we integrated Amazon Web Services (AWS) into our project to host the application in the cloud. We had to create a database to store the queries made with the response and the time at which the API interaction was made.
 
-    - Como añadido, una vez que tuvimos la interfaz desarrollada en html, decidímos sumar un punto más usando CSS para hacer más agradable a la vista la propia app. Pensamos que sería buena idea añadir un campo donde el usuario pueda ingresar su propia API key para hacer las consultas. Para la mejor accesibilidad hemos decidido subir la imagen a Docker Hub y ahorrarnos hacer pasos extra.
+    - In summary, our project consisted of designing and developing a web application that would allow users to interact with a chatbot developed with the ChatGPT API. To do this, we defined the system's architecture, developed the ChatGPT API, designed and developed the interface, integrated Docker and Amazon Web Services to host the application in the cloud.
 
+    - As an addition, once we had the interface developed in HTML, we decided to add a touch of CSS to make the app more visually appealing. We thought it would be a good idea to add a field where the user can enter their own API key to make queries.
 
+<h2>Our team</h2>
+- [Ramón Fernández](https://github.com/RamonFCerezo)
+- [Bogdan Radacina](https://github.com/BogdanBoyan92)
+- [Miguel de Frutos](https://github.com/Migueldfr)
